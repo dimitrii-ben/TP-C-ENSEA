@@ -13,28 +13,53 @@ ptETAT createFisrtState(int direction,int x,int y){
     nouveau->next = NULL;
 }
 
+void changeState(int*** tableau,int x,int y){
+    if(*tableau[y][x] == BLANC){
+        *tableau[y][x]=NOIR;
+    }
+    else{
+        *tableau[y][x]=BLANC;
+    }
+    
+}
+void copyArrayState(int*** tableau_nouveau,int*** tableau_ancien){
+    for (int i = 0; i<DIMY;i++){
+        for (int j =0;j<DIMX;j++){
+            *tableau_nouveau[i][j] = *tableau_ancien[i][j];
+        }
+    }
+}
+
 ptETAT createNextState(ETAT* head){
     ptETAT current_pt = head;
     //Go to the end of the list
     while(current_pt->next!=NULL){
         current_pt = current_pt->next;
     }
-    //--------------    Creation de l'Etat suivant
+    /*
+     * Changement d'etat du dernier element courant
+    */
+    changeState(&current_pt->tableau,current_pt->x_fourmi,current_pt->y_fourmi);
+    /*---------------------------------------------
+     *
+     *      CREATION NOUVELLE ETAT (ETAT SUIVANT) 
+     * 
+     *--------------------------------------------*/
     ptETAT nouveau = malloc(sizeof(ETAT));
-    int direction,x,y;
-    for (int i = 0; i<DIMY;i++){
-        for (int j =0;j<DIMX;j++){
-            nouveau->tableau[i][j] = current_pt->tableau[i][j];
-        }
-    }
-    nouveau->next = NULL;
-
+    //Recopie des deux tableaux
+    copyArrayState(&nouveau->tableau,&current_pt->tableau);
+    
     //On defini la direction du prochain etat
     if(current_pt->tableau[current_pt->x_fourmi][current_pt->y_fourmi] == BLANC){
-        nouveau->direction = current_pt->direction++;
+        if(current_pt->direction == OUEST){
+            nouveau->direction =NORD;
+        }
+        else{
+            nouveau->direction = current_pt->direction++;
+        }
     }
     else{
-        if(!current_pt->direction){
+        if(current_pt->direction == NORD){
             nouveau->direction = OUEST;
         }
         else{
@@ -63,12 +88,9 @@ ptETAT createNextState(ETAT* head){
     case OUEST:
         nouveau->x_fourmi = current_pt->x_fourmi--;
         break;
-
-    
-    default:
-        break;
     }
-    current_pt->next = createFisrtState(direction,x,y);
+    nouveau->next = NULL;
+    return nouveau;
     
 
 }
