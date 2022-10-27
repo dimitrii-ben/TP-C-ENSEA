@@ -94,3 +94,37 @@ ptETAT createNextState(ETAT* head){
     
 
 }
+char getChar(ptETAT e,int y,int x){
+    if(e->y_fourmi == y && e->x_fourmi== x){
+        switch (e->direction)
+        {
+        case NORD:
+            return "^";
+        case OUEST:
+            return "<";
+        case SUD:
+            return "|";
+        case EST:
+            return ">";
+        }
+    }
+    else{
+        if(e->tableau[y][x] == BLANC){
+            return "B";
+        }
+        return "N";
+    }
+    
+}
+
+void displayState(ptETAT e){
+    char* etat_case;
+    for (int i =0;i<DIMY;i++){
+        for(int j=0;j<DIMX;j++){
+            
+            printf("%s",getChar(e,i,j));
+        }
+        printf("\n");
+    }
+
+}

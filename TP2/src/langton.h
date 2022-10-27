@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <stdlib.h>
 #define DIMX 5
 #define DIMY 5
 
