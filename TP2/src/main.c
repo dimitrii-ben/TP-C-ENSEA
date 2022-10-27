@@ -1,5 +1,6 @@
 #include "langton.h"
-#include "liste.c"
+#include "langton.c"
 int main(){
-    printf("%i",(9%10));
+    ptETAT head = createFisrtState(NORD,0,0);
+    
 }

@@ -18,7 +18,7 @@ typedef struct etat
     int tableau[DIMY][DIMX];
     int x_fourmi;
     int y_fourmi;
-    ptETAT next;
+    struct etat* next;
 }ETAT;
 
 typedef ETAT* ptETAT;

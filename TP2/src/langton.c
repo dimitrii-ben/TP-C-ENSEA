@@ -13,7 +13,7 @@ ptETAT createFisrtState(int direction,int x,int y){
     nouveau->next = NULL;
 }
 
-void changeState(int*** tableau,int x,int y){
+void changeState(int(*tableau)[DIMY][DIMX],int x,int y){
     if(*tableau[y][x] == BLANC){
         *tableau[y][x]=NOIR;
     }
@@ -22,7 +22,7 @@ void changeState(int*** tableau,int x,int y){
     }
     
 }
-void copyArrayState(int*** tableau_nouveau,int*** tableau_ancien){
+void copyArrayState(int(*tableau_nouveau)[DIMY][DIMX],int(*tableau_ancien)[DIMY][DIMX]){
     for (int i = 0; i<DIMY;i++){
         for (int j =0;j<DIMX;j++){
             *tableau_nouveau[i][j] = *tableau_ancien[i][j];
@@ -99,20 +99,20 @@ char getChar(ptETAT e,int y,int x){
         switch (e->direction)
         {
         case NORD:
-            return "^";
+            return '^';
         case OUEST:
-            return "<";
+            return '<';
         case SUD:
-            return "|";
+            return 'v';
         case EST:
-            return ">";
+            return '>';
         }
     }
     else{
         if(e->tableau[y][x] == BLANC){
-            return "B";
+            return 'B';
         }
-        return "N";
+        return 'N';
     }
     
 }
@@ -122,7 +122,7 @@ void displayState(ptETAT e){
     for (int i =0;i<DIMY;i++){
         for(int j=0;j<DIMX;j++){
             
-            printf("%s",getChar(e,i,j));
+            printf("%c",getChar(e,i,j));
         }
         printf("\n");
     }
