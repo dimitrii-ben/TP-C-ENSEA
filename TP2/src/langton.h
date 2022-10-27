@@ -10,13 +10,15 @@
 #define SUD 2
 #define OUEST 3
 #define FOURMI 4
-
+#define NOIR 0
+#define BLANC 1
 typedef struct etat
 {
     int direction;
-    int tableau[DIMX][DIMY];
+    int tableau[DIMY][DIMX];
     int x_fourmi;
     int y_fourmi;
+    ptETAT next;
 }ETAT;
 
 typedef ETAT* ptETAT;
