@@ -9,20 +9,18 @@
 #define EST 1
 #define SUD 2
 #define OUEST 3
-
+#define FOURMI 4
 
 typedef struct etat
 {
     int direction;
-    int tableau[DIMX][DIMY]
+    int tableau[DIMX][DIMY];
+    int x_fourmi;
+    int y_fourmi;
 }ETAT;
 
 typedef ETAT* ptETAT;
 ptETAT createFisrtState(int direction,int x,int y);
 
-//Creation de la variable type
-typedef struct liste{
-    int val;
-    struct liste * suivant;
-}Liste;
+
 

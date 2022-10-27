@@ -1,16 +1,20 @@
 #include "langton.h"
-
+//Creation de la variable type
+typedef struct liste{
+    ETAT state;
+    struct liste * suivant;
+}Liste;
 //Fonction ajoutant un nouvel element au debut de la liste courante tout en modifiant le pointeur du premier element
-void push(Liste ** head, int val) {
+void push(Liste ** head, ETAT state) {
     Liste* new_node;
     new_node = (Liste *) malloc(sizeof(Liste));
 
-    new_node->val = val;
+    new_node->state = state;
     new_node->suivant = *head;
     *head = new_node;
 }
 // Fonction ajouant un nouvel element a la fin de la liste courante
-void push(Liste * head, int val) {
+void push(Liste * head, ETAT state) {
     Liste * current = head;
     //Boucler jusqu'au dernier element
     while (current->suivant != NULL) {
@@ -18,33 +22,32 @@ void push(Liste * head, int val) {
     }
     //Creation et allocation du nouvel element dans la liste
     current->suivant = (Liste *) malloc(sizeof(Liste));
-    current->suivant->val = val;
+    current->suivant->state = state;
     current->suivant->suivant = NULL;
 }
-// Fonction retirant le premier element de la liste courante et retourne la valeur enleve
+// Fonction retirant le premier element de la liste courante 
 int pop(Liste ** head) {
-    int retval = -1;
+    ETAT retstate;
     Liste * next_node = NULL;
 
     if (*head == NULL) {
-        return -1;
+        return NULL;
     }
 
     next_node = (*head)->suivant;
-    retval = (*head)->val;
     free(*head);
     *head = next_node;
 
-    return retval;
+    return 1;
 }
 
-int remove_last(Liste * head) {
-    int retval = 0;
+ETAT remove_last(Liste * head) {
+    ETAT retstate;
     // Si la liste contient un element retirer celui ci
     if (head->suivant == NULL) {
-        retval = head->val;
+        retstate = head->state;
         free(head);
-        return retval;
+        return retstate;
     }
 
     // Va chercher l'avant dernier element de la liste (d'ou le double decalage)
@@ -55,10 +58,10 @@ int remove_last(Liste * head) {
 
     //Supprimer et librer l'espace du dernier element de la liste
     //Et transformer cette element en l'element NULL
-    retval = current->suivant->val;
+    retstate = current->suivant->state;
     free(current->suivant);
     current->suivant = NULL;
-    return retval;
+    return retstate;
 
 }
 
