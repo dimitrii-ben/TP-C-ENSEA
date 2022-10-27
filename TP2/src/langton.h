@@ -17,7 +17,7 @@ typedef struct etat
     int tableau[DIMX][DIMY]
 }ETAT;
 
-typedef struct ETAT * ptETAT;
+typedef ETAT* ptETAT;
 ptETAT createFisrtState(int direction,int x,int y);
 
 //Creation de la variable type
