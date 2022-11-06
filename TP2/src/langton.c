@@ -2,11 +2,13 @@
 
 ETAT* createFirstState(int direction,int x,int y){
     ETAT* nouveau = malloc(sizeof(ETAT));
+    //Initialisation du nouveau tableau (matrice nulle)
     for (int i =0;i<DIMY;i++){
         for(int j=0;j<DIMX;j++){
             nouveau->tableau[i][j] =0;
         }
     }
+    //Inialisation des premieres positions/directions de notre fourmi
     nouveau->direction = direction;
     nouveau->x_fourmi = x;
     nouveau->y_fourmi = y;
