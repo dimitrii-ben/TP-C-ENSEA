@@ -38,7 +38,7 @@ ETAT* createNextState(ETAT* head){
         }
     }
     /*
-     * Changement d'etat de l'ancien element 
+     * Changement d'etat du nouveau element 
     */
     if(nouveau->tableau[current_pt->y_fourmi][current_pt->x_fourmi] == BLANC){
         nouveau->tableau[current_pt->y_fourmi][current_pt->x_fourmi]=NOIR;
@@ -65,7 +65,7 @@ ETAT* createNextState(ETAT* head){
         
     }
     
-    //On modifi l'etat du tableau et les coordonees de la fourmi
+    //On modifi les coordonees de la fourmi
     /*  0 ----> x
      *  |
      *  |

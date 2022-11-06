@@ -8,7 +8,7 @@ int main(int argc,char* argv[]){
         printf("Exit failure\n");
         return EXIT_FAILURE;
     }
-    ETAT* head = createFirstState(NORD,25,25);
+    ETAT* head = createFirstState(NORD,50,50);
     ETAT* current_pt;
     int iteration = 0;
     int limite = 0;
